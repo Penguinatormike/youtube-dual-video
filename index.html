@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="page.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+table, th, td {
+    border: 1px solid black;
+    text-align:center;
+}
+iframe {
+    padding: 1px;
+	background-color: #D3D3D3;
+}
+</style>
+<title>Youtube Mashup</title>
+</head>
+<body>
+
+<h1>Youtube Mashup</h1>
+<p>Put in two links to youtube videos that you want to mash up!</p>
+
+<div class="left-panel">
+	Copy and paste your first link here:<br> 
+	<input type="text" size="50" id="first-vid">
+	<iframe width="420" height="315" id="first-frame" frameborder="0" allowfullscreen
+	src="">
+	</iframe><br>
+	<br>
+</div>
+<div class="right-panel">
+	Copy and paste your second link here:<br>
+	<input type="text" size="50" name="second-vid" id="second-vid"><br>
+	<iframe width="420" height="315" id="second-frame" frameborder="0" allowfullscreen
+	src="">
+	</iframe>
+</div>
+<br>
+
+<div class="left-panel">
+	<button id="load-video">Load Both Videos!</button>
+	<br><br><br>
+	<table>
+		<tr>
+			<th colspan="2">Here are some good samples to start with, note: you can just click on the links to load them :)</th>
+		</tr>
+		<tr>
+			<td class="">first video</td>
+			<td class="">second video</td>
+		</tr>
+		<tr>
+			<td class="table-video1">https://www.youtube.com/watch?v=ZZ5LpwO-An4</td>
+			<td class="table-video2">https://www.youtube.com/watch?v=T74Xek-pDLM</td>
+		</tr>
+		<tr>
+			<td class="table-video1" data-extra="&start=64">https://www.youtube.com/watch?v=dv13gl0a-FA</td>
+			<td class="table-video2">https://www.youtube.com/watch?v=g_DBLppDZAs</td>
+		</tr>
+		<tr>
+			<td class="table-video1">https://www.youtube.com/watch?v=YVkUvmDQ3HY</td>
+			<td class="table-video2">https://www.youtube.com/watch?v=-bzWSJG93P8</td>
+		</tr>
+	</table>
+	
+	<a href="https://diep.io" target="_blank">Bored? Click me :D</a>
+</div>
+
+</body>
+</html>
+<script>
+//http://www.youtube.com/embed/JW5meKfy3fY?autoplay=1
+$( "#load-video" ).click(function() {
+	var first_vid = ($('#first-vid').val()).replace("watch?v=", "embed/")+'?autoplay=1&loop=1';
+	var second_vid = ($('#second-vid').val()).replace("watch?v=", "embed/")+'?autoplay=1&loop=1';
+	$('#first-frame').attr('src', first_vid);
+	$('#second-frame').attr('src', second_vid);
+});
+
+$(".table-video1").click(function() {
+	var first_vid = ($(this).html()).replace("watch?v=", "embed/")+'?autoplay=1&loop=1'+$(this).data("extra");
+	$('#first-vid').val($(this).html());
+	$('#first-frame').attr('src', first_vid);
+});
+
+$(".table-video2").click(function() {
+	var second_vid = ($(this).html()).replace("watch?v=", "embed/")+'?autoplay=1&loop=1'+$(this).data("extra");;
+	$('#second-vid').val($(this).html());
+	$('#second-frame').attr('src', second_vid);
+});
+
+</script>
